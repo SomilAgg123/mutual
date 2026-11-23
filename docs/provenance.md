@@ -26,6 +26,7 @@ The original frontend also had a local Xcode-project modification. Its current s
 - Installed dependencies, bytecode, logs, installers, environment files, obsolete lockfiles, signing material, and the binary Gradle wrapper were omitted.
 - Trailing whitespace was cleaned from imported text files, with Git text normalization configured for the new repository.
 - The frontend dependency list was reduced from 630 entries to 30 packages referenced by application/configuration code. It is a curated historical manifest, not a validated modern build environment.
+- Browser review captures use eight original screens with offline fixtures. Small declaration-order and variable-scope fixes in the captured screens and score-circle component allow rendering without redesigning layouts; see [screenshot provenance](screenshots/README.md).
 - Portrait photos and unverified font binaries were omitted as described in [assets](assets.md).
 - The historical Flask app is disabled by default and no longer creates database tables at startup. Its wider application behavior remains historical.
 - The runnable scoring implementation has corrected and documented semantics; the original algorithm remains available for comparison.

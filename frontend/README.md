@@ -20,6 +20,8 @@ The package manifest now lists application/configuration dependencies instead of
 
 Old service URLs now point to localhost. Real contact placeholders were replaced with example data. Unverified portrait photos were replaced with generated geometric avatars. Lato and its bundled license are retained; unverified SeoulHangang binaries were omitted and their font aliases use Lato. See [asset notes](../docs/assets.md).
 
+The optional [review captures](../docs/screenshots/README.md) render eight preserved screens with browser adapters and offline fixtures. Rendering required small declaration fixes: comparison route parameters now precede the effects that read them, request URLs in the captured screens are local constants, and score-circle helpers are locally declared. Layouts remain unchanged.
+
 The `ios/` and `android/` directories preserve native source for reference. Signing identities, the Android debug keystore, and the binary Gradle wrapper were omitted. They must be regenerated during a future native build migration.
 
 The package scripts describe the intended Expo entry points, but they are not a working setup guide. Authentication/onboarding wiring, data contracts, image handling, and obsolete dependencies still need work. In particular, the current app entry point goes directly to the app navigator and the historical chat and profile requests do not form a verified complete flow.

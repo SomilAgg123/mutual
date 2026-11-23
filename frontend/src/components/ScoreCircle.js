@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 export default function ScoreCirlce({ title, percent, textShown, color, size }) {
-    propStyle = (percent, base_degrees) => {
+    const propStyle = (percent, base_degrees) => {
         const rotateBy = base_degrees + (percent * 3.6);
         return {
             transform:[{rotateZ: `${rotateBy}deg`}]
         };
     }
 
-    renderThirdLayer = (percent) => {
+    const renderThirdLayer = (percent) => {
         if(percent > 50)
         {
             return <View style={[styles.secondProgressLayer,propStyle((percent - 50), 45), {

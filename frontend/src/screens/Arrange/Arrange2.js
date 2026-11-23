@@ -31,6 +31,12 @@ export default function Arrange2({ route }) {
     const {
         state: auth,
     } = useContext(AuthContext);
+    const {
+        user1,
+        user2,
+        similarityScore,
+        complementaryScore
+    } = route.params;
     const [editing, setEditing] = useState(false);
     const [reasons, setReasons] = useState(null);
     const [scores, setScores] = useState(null);
@@ -52,7 +58,7 @@ export default function Arrange2({ route }) {
     //TODO: MAKE FUNCTION THAT CALCULATES AGE BASED ON DOB
 
     async function fetchScores(profile_id1, profile_id2) {
-        url = 'http://127.0.0.1:5000/api/scores/' + profile_id1 + "/" + profile_id2;
+        const url = 'http://127.0.0.1:5000/api/scores/' + profile_id1 + "/" + profile_id2;
         const response = await fetch(url);
         const json = await response.json();
         setScores(json);
@@ -60,7 +66,7 @@ export default function Arrange2({ route }) {
     }
 
     async function fetchReasons(profile_id1, profile_id2) {
-        url = 'http://127.0.0.1:5000/api/scores/reasons/' + profile_id1 + "/" + profile_id2;
+        const url = 'http://127.0.0.1:5000/api/scores/reasons/' + profile_id1 + "/" + profile_id2;
         const response = await fetch(url);
         const json = await response.json();
         setReasons(json);
@@ -69,7 +75,7 @@ export default function Arrange2({ route }) {
     }
 
     async function fetchProfile1(profile_id1) {
-        url = 'http://127.0.0.1:5000/api/profile/' + profile_id1;
+        const url = 'http://127.0.0.1:5000/api/profile/' + profile_id1;
         console.log("INSIDE LOADED 3")
         console.log(profile_id1)
         const response = await fetch(url);
@@ -79,7 +85,7 @@ export default function Arrange2({ route }) {
     }
 
     async function fetchProfile2(profile_id2) {
-        url = 'http://127.0.0.1:5000/api/profile/' + profile_id2;
+        const url = 'http://127.0.0.1:5000/api/profile/' + profile_id2;
         const response = await fetch(url);
         const json = await response.json();
         setProfile2(json);
@@ -87,14 +93,14 @@ export default function Arrange2({ route }) {
     }
 
     async function fetchReason1Text(proflie_id1, profile_id2, reason1) {
-        url = 'http://127.0.0.1:5000/api/scores/reasons/prompt/' + proflie_id1 + '/' + profile_id2 + '/' + reason1;
+        const url = 'http://127.0.0.1:5000/api/scores/reasons/prompt/' + proflie_id1 + '/' + profile_id2 + '/' + reason1;
         const response = await fetch(url);
         const text = await response.text();
         setReason1(text);
         setLoaded7(true);
     }
     async function fetchReason2Text(proflie_id1, profile_id2, reason2) {
-        url = 'http://127.0.0.1:5000/api/scores/reasons/prompt/' + proflie_id1 + '/' + profile_id2 + '/' + reason2;
+        const url = 'http://127.0.0.1:5000/api/scores/reasons/prompt/' + proflie_id1 + '/' + profile_id2 + '/' + reason2;
         const response = await fetch(url);
         const text = await response.text();
         setReason2(text);
@@ -139,12 +145,6 @@ export default function Arrange2({ route }) {
         }
     }, [reasons]);
 
-    const {
-        user1,
-        user2,
-        similarityScore,
-        complementaryScore
-    } = route.params;
     console.log("LOADED VALUES")
     console.log(user1)
     console.log(user2)

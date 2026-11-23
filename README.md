@@ -58,7 +58,17 @@ This is the intended product journey. Some transitions were not completed in the
 
 ## Review screenshots
 
-The preserved Welcome, Search, and Introductions components rendered in a browser with fixed sample data. These are read-only web previews with native-service adapters, not screenshots of a working native app.
+The preserved components rendered in a browser with fictional profiles and offline data. These are read-only web previews with native-service adapters, not screenshots of a working native app.
+
+Profile cards, recommended matches, and the detailed compatibility view:
+
+![Profile cards and compatibility screens](docs/screenshots/cards-and-matching.png)
+
+Profile settings, photos, and prompt responses:
+
+![Profile settings and editing layouts](docs/screenshots/profile-management.png)
+
+Welcome, friend search, and introductions:
 
 ![Preserved Mutual components rendered for review](docs/screenshots/component-previews.png)
 

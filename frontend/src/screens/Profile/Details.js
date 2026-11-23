@@ -50,7 +50,7 @@ export default function Details({ navigation }) {
     }
 
     async function fetchProfile() {
-        url = 'http://127.0.0.1:5000/api/profile/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/profile/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setProfile(json);

@@ -40,7 +40,7 @@ const SearchModal = (allProfiles, { closeModal }) => {
     const renderItem = ({ item }) => <SearchResult item={item} />;
 
     async function fetchFriends(profile_id) {
-        url = 'http://127.0.0.1:5000/api/friend/list/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/friend/list/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setFriends(json);
@@ -109,7 +109,7 @@ export default function Arrange({ nav, route }) {
     const [recommendations, setRecommendations] = useState(null);
 
     async function fetchProfile(profile_id) {
-        url = 'http://127.0.0.1:5000/api/profile/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/profile/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setProfile(json);
@@ -117,7 +117,7 @@ export default function Arrange({ nav, route }) {
     }
 
     async function fetchPotentialArrangeRecommendations(profile_id) {
-        url = 'http://127.0.0.1:5000/api/arrange/recommendations/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/arrange/recommendations/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setRecommendations(json);
@@ -125,7 +125,7 @@ export default function Arrange({ nav, route }) {
     }
 
     async function fetchAllProfiles() {
-        url = 'http://127.0.0.1:5000/api/profile'
+        const url = 'http://127.0.0.1:5000/api/profile'
         const response = await fetch(url);
         const json = await response.json()
         setAllProfiles(json);

@@ -175,7 +175,7 @@ export default function Source() {
     // const profile_id = 1; // TODO: CHANGE THIS
 
     async function fetchCardStack(profile_id) {
-        url = 'http://127.0.0.1:5000/api/card/stack/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/card/stack/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setCardStack(json);
@@ -184,7 +184,7 @@ export default function Source() {
     }
 
     async function fetchCard(profile_id) {
-        url = 'http://127.0.0.1:5000/api/card/' + profile_id;
+        const url = 'http://127.0.0.1:5000/api/card/' + profile_id;
         const response = await fetch(url);
         const json = await response.json();
         setCard(json);
@@ -192,7 +192,7 @@ export default function Source() {
     }
 
     async function fetchProfileFromEmail(email) {
-        url = 'http://127.0.0.1:5000/api/profile/email/' + email;
+        const url = 'http://127.0.0.1:5000/api/profile/email/' + email;
         const response = await fetch(url);
         const json = await response.json()
         setProfile(json);
