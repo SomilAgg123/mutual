@@ -70,11 +70,11 @@ try {
   await page.locator('[data-step="icebreaker"]').focus();
   await page.keyboard.press('ArrowRight');
   await checkScreen(...screens[4]);
-  for (const [index, name, similarity] of [[0, 'Jordan', '89.5%'], [1, 'Riley', '56.1%'], [2, 'Casey', '19.7%']]) {
+  for (const [index, name, similarity, complementarity] of [[0, 'Jordan', '89.5%', '100.0%'], [1, 'Riley', '56.1%', '36.7%'], [2, 'Casey', '19.7%', '15.8%']]) {
     await page.locator(`[data-candidate="${index}"]`).click();
     assert.equal(await page.locator('#candidate-name').textContent(), name);
     assert.equal(await page.locator('#similarity-value').textContent(), similarity);
-    assert.ok(await page.locator('#score-reasons li').count() >= 2);
+    assert.equal(await page.locator('#complementarity-value').textContent(), complementarity);
   }
   await page.locator('[data-step="browse"]').click();
   await checkScreen(...screens[0]);

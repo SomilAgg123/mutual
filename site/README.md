@@ -6,7 +6,7 @@ The website explains the original app through seven read-only screen previews: p
 
 The original React Native components are bundled through the same browser adapters as the review screenshots. A fixed-size iframe isolates their original dimensions from the responsive website. The fixtures intercept every API fetch; unknown requests and writes fail. Content Security Policy also blocks service connections. No backend, accounts, notifications, analytics, or data collection is configured.
 
-The score explorer uses fresh JSON output from `examples/match_demo.py` at build time. It does not reimplement the scorer in JavaScript. All profiles are fictional, portraits are generated placeholders, and the original activity and editor screens retain their sample copy. Match explanations in the phone are fixtures; score-explorer explanations come from the Python implementation.
+The score explorer uses fresh JSON output from `examples/match_demo.py` at build time. It does not reimplement the scorer in JavaScript. All profiles are fictional, portraits are generated placeholders, and the original activity and editor screens retain their sample copy. Match explanations in the phone are fixtures. Detailed scoring explanations remain in the repository documentation; the site focuses on screens, titles, navigation, and scores.
 
 ## Build and preview
 
