@@ -1,0 +1,56 @@
+import { build } from 'esbuild';
+import { execFileSync } from 'node:child_process';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const root = resolve(here, '../..');
+const require = createRequire(import.meta.url);
+const target = resolve(process.argv[2] || join(root, '.review-build'));
+await mkdir(target, { recursive: true });
+const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const data = async (path, type) => `data:${type};base64,${(await readFile(join(root, path))).toString('base64')}`;
+const font = await data('frontend/assets/fonts/Lato-Regular.ttf', 'font/ttf');
+const bold = await data('frontend/assets/fonts/Lato-Bold.ttf', 'font/ttf');
+const logo = await data('frontend/assets/icons/Logo.png', 'image/png');
+const css = `
+@font-face{font-family:Lato;src:url('${font}')}@font-face{font-family:LatoBold;src:url('${bold}')}
+*{box-sizing:border-box}body{margin:0;background:#f6f4f9;color:#231a31;font-family:Lato,Arial,sans-serif}
+.page{width:1440px;padding:52px 66px 36px}.brand{display:flex;align-items:center;gap:12px;font-family:LatoBold;font-size:22px}
+.brand img{width:36px;height:36px}.eyebrow{margin-left:auto;font-size:12px;letter-spacing:2px;color:#705c87}
+h1{font:42px LatoBold;margin:24px 0 10px;letter-spacing:-1px}.intro{font-size:18px;line-height:1.6;color:#6a5d77;margin:0}
+.devices{display:flex;gap:30px;margin-top:32px;justify-content:center}.device{width:390px}
+.label{font:16px LatoBold;margin-bottom:12px;display:flex;align-items:center;gap:10px}.label small{font:12px Lato;color:#746981}
+.frame{height:860px;width:390px;border:8px solid #26202f;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 12px 25px #30203d12;pointer-events:none}
+.screen{display:flex;width:100%;height:100%;overflow:hidden}.note{font-size:14px;color:#6a5d77;line-height:1.6;margin-top:24px}
+.pill{display:inline-block;background:#eae1f4;color:#69379a;border:1px solid #dac9e9;border-radius:24px;padding:8px 15px;font:14px LatoBold;margin-right:9px}
+.console{background:#201a29;border:1px solid #3b2d4c;border-radius:14px;margin-top:24px;overflow:hidden;color:#f3ecfa}
+.bar{padding:15px 24px;background:#2b2237;color:#bfb0d0;font:13px monospace;letter-spacing:.5px}.command{padding:24px 28px 0;color:#d6adfa;font:16px monospace}
+pre{font:15px/1.75 ui-monospace,Menlo,monospace;white-space:pre-wrap;margin:20px 28px 28px}
+.footer{display:flex;gap:24px;margin-top:22px}.card{flex:1;background:#fff;border:1px solid #e7e0ef;padding:19px 22px;border-radius:12px;font-size:15px;line-height:1.6;color:#675872}.card strong{display:block;color:#34263f;font-family:LatoBold}
+`;
+const brand = `<div class="brand"><img src="${logo}" alt="Mutual logo">mutual<span class="eyebrow">PORTFOLIO REVIEW</span></div>`;
+const page = (title, body, script = '') => `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>${css}</style></head><body><main class="page">${brand}${body}</main>${script}</body></html>`;
+const result = await build({
+  entryPoints: [join(here, 'screens.jsx')], bundle: true, write: false, format: 'iife',
+  loader: { '.js': 'jsx', '.png': 'dataurl' }, nodePaths: [join(here, 'node_modules')],
+  define: { 'process.env.NODE_ENV': '"production"', '__DEV__': 'false' },
+  plugins: [{ name: 'review-only-adapters', setup(build) {
+    build.onResolve({ filter: /^react-native$/ }, () => ({ path: require.resolve('react-native-web') }));
+    build.onResolve({ filter: /^(react-native-vector-icons\/|react-native-elements$|@react-navigation\/native$|expo-linear-gradient$)/ }, () => ({ path: join(here, 'adapters.jsx') }));
+    build.onResolve({ filter: /context\/AuthContext$/ }, () => ({ path: join(here, 'adapters.jsx') }));
+  }}],
+});
+const ui = `<h1>The original Mutual experience</h1><p class="intro">Preserved React Native components rendered in a browser for review.</p>
+<div class="devices">${[['welcome','01 · Welcome','Original copy'],['search','02 · Find a friend','Fixed sample profiles'],['introductions','03 · Introductions','Fixed sample activity']].map(([id,title,detail]) => `<section class="device"><div class="label">${title}<small>${detail}</small></div><div class="frame"><div class="screen" id="${id}"></div></div></section>`).join('')}</div>
+<p class="note">Read-only web previews, not native-device screenshots. Navigation is disabled; gradients, icons and the search control use browser adapters.<br>Original component layouts and copy are retained. Profile photos are the generated placeholders included in the repository.</p>`;
+await writeFile(join(target,'screens.html'),page('Mutual — original component previews', ui, `<script>${result.outputFiles[0].text.replaceAll('</script','<\\/script')}</script>`));
+const output = execFileSync('python3', [join(root,'examples/match_demo.py')], { cwd:root, encoding:'utf8' });
+const demo = `<h1>A matching example you can run</h1><p class="intro">Actual output from the maintained Python scorer, using four fictional profiles.</p>
+<div style="margin-top:22px"><span class="pill">Python standard library</span><span class="pill">No cloud services</span><span class="pill">Explainable weighted rules</span></div>
+<div class="console"><div class="bar">LOCAL DEMO OUTPUT</div><div class="command">$ python3 examples/match_demo.py</div><pre>${escape(output)}</pre></div>
+<div class="footer"><div class="card"><strong>What the scores mean</strong>Similarity and complementarity are normalized rule scores. They are not predictions of relationship success.</div><div class="card"><strong>What is preserved</strong>The original mobile UI and Flask source sit alongside the maintained scorer, with clear status and contributor credits.</div></div>`;
+await writeFile(join(target,'matching-demo.html'),page('Mutual — matching demo',demo));
+console.log(`Review pages written to ${target}`);

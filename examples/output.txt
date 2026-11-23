@@ -1,0 +1,15 @@
+MUTUAL / Matchmaking for Alex
+Fictional profiles. Weighted rules, not predictions of relationship success.
+
+Candidate      Similarity   Complementarity    Ranking
+Jordan              89.5%            100.0%      94.7%
+Riley               56.1%             36.7%      46.4%
+Casey               19.7%             15.8%      17.8%
+
+Why Jordan ranks first in this example:
+  - Political affiliation: 100% agreement under the demo rules.
+  - Smoking preference: 100% agreement under the demo rules.
+  - Giving and receiving preferences align in 2 of 2 directions.
+  - Historical zodiac lookup: 100% of its maximum; an illustrative rule, not a validated prediction.
+
+All fixture profiles have complete scoring data. See docs/matching.md for limits.

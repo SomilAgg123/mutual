@@ -1,0 +1,38 @@
+[
+  {
+    "id": "demo-alex", "firstName": "Alex",
+    "hometown": "Harbor City", "work": "Cedar Studio", "jobTitle": "Designer", "school": "Maple College",
+    "word1": "curious", "word2": "thoughtful", "word3": "playful", "quality1": "kind", "quality2": "adventurous",
+    "politicalAffiliation": 0, "politicalImportance": 1, "politicalFriendImportance": 1,
+    "timeOfDay": 1, "drink": 0, "smoke": -1, "drugs": -1, "religion": 0, "religionImportance": 0, "pdaPreference": 1,
+    "personalityType": 0, "decisive": 0, "opinionated": 1, "mb": 0, "zodiac": 0,
+    "giveLoveLanguage": 3, "receiveLoveLanguage": 0
+  },
+  {
+    "id": "demo-jordan", "firstName": "Jordan",
+    "hometown": "Harbor City", "work": "Juniper Lab", "jobTitle": "Researcher", "school": "Maple College",
+    "word1": "kind", "word2": "adventurous", "word3": "patient", "quality1": "curious", "quality2": "thoughtful",
+    "politicalAffiliation": 0, "politicalImportance": 1, "politicalFriendImportance": 1,
+    "timeOfDay": 1, "drink": 0, "smoke": -1, "drugs": -1, "religion": 0, "religionImportance": 0, "pdaPreference": 1,
+    "personalityType": 1, "decisive": 1, "opinionated": 0, "mb": 3, "zodiac": 1,
+    "giveLoveLanguage": 0, "receiveLoveLanguage": 3
+  },
+  {
+    "id": "demo-riley", "firstName": "Riley",
+    "hometown": "Meadow Town", "work": "Cedar Studio", "jobTitle": "Designer", "school": "Elm Academy",
+    "word1": "kind", "word2": "creative", "word3": "quiet", "quality1": "playful", "quality2": "patient",
+    "politicalAffiliation": 1, "politicalImportance": 2, "politicalFriendImportance": 1,
+    "timeOfDay": -1, "drink": 1, "smoke": -1, "drugs": -1, "religion": 0, "religionImportance": 1, "pdaPreference": 0,
+    "personalityType": 0, "decisive": 1, "opinionated": 1, "mb": 8, "zodiac": 3,
+    "giveLoveLanguage": 0, "receiveLoveLanguage": 1
+  },
+  {
+    "id": "demo-casey", "firstName": "Casey",
+    "hometown": "River Town", "work": "Birch Works", "jobTitle": "Engineer", "school": "Elm Academy",
+    "word1": "focused", "word2": "practical", "word3": "calm", "quality1": "organized", "quality2": "direct",
+    "politicalAffiliation": -1, "politicalImportance": 0, "politicalFriendImportance": 0,
+    "timeOfDay": -2, "drink": -1, "smoke": 1, "drugs": 0, "religion": 1, "religionImportance": 2, "pdaPreference": 2,
+    "personalityType": 0, "decisive": 0, "opinionated": 1, "mb": 10, "zodiac": 4,
+    "giveLoveLanguage": 1, "receiveLoveLanguage": 4
+  }
+]

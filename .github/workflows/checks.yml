@@ -1,0 +1,29 @@
+name: Matching demo and repository checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Behavioral tests without site packages
+        run: python -S -m unittest discover -s tests -v
+      - name: Run the documented example
+        run: python -S examples/match_demo.py
+      - name: Repository hygiene and source checks
+        run: python -S scripts/check_repository.py
