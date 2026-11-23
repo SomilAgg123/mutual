@@ -1,4 +1,4 @@
-import { build } from 'esbuild';
+import { bundlePreview } from './bundle.mjs';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
@@ -33,16 +33,7 @@ pre{font:15px/1.75 ui-monospace,Menlo,monospace;white-space:pre-wrap;margin:20px
 `;
 const brand = `<div class="brand"><img src="${logo}" alt="Mutual logo">mutual<span class="eyebrow">PORTFOLIO REVIEW</span></div>`;
 const page = (title, body, script = '') => `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>${css}</style></head><body><main class="page">${brand}${body}</main>${script}</body></html>`;
-const result = await build({
-  entryPoints: [join(here, 'screens.jsx')], bundle: true, write: false, format: 'iife',
-  loader: { '.js': 'jsx', '.png': 'dataurl' }, nodePaths: [join(here, 'node_modules')],
-  define: { 'process.env.NODE_ENV': '"production"', '__DEV__': 'false' },
-  plugins: [{ name: 'review-only-adapters', setup(build) {
-    build.onResolve({ filter: /^(react-native|react-native-gesture-handler|react-native-animatable)$/ }, () => ({ path: join(here, 'native.jsx') }));
-    build.onResolve({ filter: /^(react-native-vector-icons\/|react-native-elements$|@react-navigation\/native$|expo-linear-gradient$|expo-image-picker$|aws-amplify$|@aws-amplify\/core$)/ }, () => ({ path: join(here, 'adapters.jsx') }));
-    build.onResolve({ filter: /context\/(Auth|Onboard)Context$/ }, () => ({ path: join(here, 'adapters.jsx') }));
-  }}],
-});
+const result = await bundlePreview(join(here, 'screens.jsx'));
 const ui = `<h1>The original Mutual experience</h1><p class="intro">Preserved React Native components rendered in a browser for review.</p>
 <div class="devices">${[['welcome','01 · Welcome','Original copy'],['search','02 · Find a friend','Fixed sample profiles'],['introductions','03 · Introductions','Fixed sample activity']].map(([id,title,detail]) => `<section class="device"><div class="label">${title}<small>${detail}</small></div><div class="frame"><div class="screen" id="${id}"></div></div></section>`).join('')}</div>
 <p class="note">Read-only web previews, not native-device screenshots. Navigation is disabled; gradients, icons and the search control use browser adapters.<br>Original component layouts and copy are retained. Profile photos are the generated placeholders included in the repository.</p>`;

@@ -12,7 +12,7 @@ import sys
 from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP = {".git", "node_modules", ".venv", "venv", "__pycache__", ".pytest_cache", ".review-build"}
+SKIP = {".git", "node_modules", ".venv", "venv", "__pycache__", ".pytest_cache", ".review-build", ".site-build"}
 PATTERNS = {
     "cloud access key": re.compile(r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b"),
     "private key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),

@@ -4,6 +4,7 @@
 - [Profile management](profile-management.png): preserved Profile and Details components showing account settings, photos, and prompt responses. Details retains its original repeated placeholder answer.
 - [Component previews](component-previews.png): preserved Welcome, Search, and AnsweredChats components.
 - [Matching demo](matching-demo.png): a rendered review page containing actual stdout from `python3 examples/match_demo.py`.
+- [Desktop walkthrough](walkthrough-desktop.png) and [mobile walkthrough](walkthrough-mobile.png): the public website at 1440px and 390px widths, captured after its tour and score interactions passed automated checks. Reproduce these with the commands in [the site notes](../../site/README.md).
 
 The UI captures use React Native Web with the original layouts and generated placeholder avatars. They are read-only browser previews, not native-device screenshots or evidence of an integrated mobile build. Scrollable views show their initial position; content below the viewport is not captured. The screenshot frame is presentation-only.
 

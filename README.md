@@ -4,9 +4,11 @@
 
 **A matchmaking prototype where friends make the introduction.**
 
+**[Walk through the app](https://somilagg123.github.io/mutual/)** — explore the preserved profile cards, comparisons, icebreakers, and profile screens, then compare the matching demo's scores.
+
 Mutual explored a different role for dating apps: helping someone introduce two people they know. A matchmaker browses profiles, compares similarity and complementarity, and chooses a question to help the pair start talking.
 
-This repository preserves the original 2023 React Native application and Flask backend, alongside a runnable, dependency-free version of the matching engine. It is a portfolio edition of a collaborative prototype. The mobile app and API remain historical source; the supported runnable experience is the Python example below.
+This repository preserves the original 2023 React Native application and Flask backend, alongside a runnable, dependency-free version of the matching engine. It is a portfolio edition of a collaborative prototype. The mobile app and API remain historical source. The public walkthrough uses read-only browser previews and fictional data; the supported matching runtime is the Python example below.
 
 ## Try the matching example
 
@@ -89,6 +91,7 @@ examples/           Fictional profiles and a runnable comparison
 tests/              Matching behavior and demo checks
 docs/               Architecture, scoring rules, feature status, and provenance
 scripts/            Repository checks and reproducible placeholder assets
+site/               Public GitHub Pages walkthrough of the original screens
 ```
 
 - [Architecture and code map](docs/architecture.md)
@@ -96,6 +99,7 @@ scripts/            Repository checks and reproducible placeholder assets
 - [Mobile source notes](frontend/README.md)
 - [Historical API notes](backend/prototype/README.md)
 - [Preservation decisions and source history](docs/provenance.md)
+- [Walkthrough development and deployment](site/README.md)
 
 ## Verify locally
 

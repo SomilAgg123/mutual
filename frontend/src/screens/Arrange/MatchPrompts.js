@@ -9,8 +9,6 @@ import { AuthContext } from '../../context/AuthContext';
 // NORMALIZER - EXPERIMENTAL
 import { Dimensions } from "react-native";
 import { PixelRatio } from 'react-native';
-import { random } from 'lodash';
-import { select } from 'async';
 
 const questions = [
 	"If you could switch lives with any fictional character for a day, who would it be and why?",
@@ -80,7 +78,7 @@ export default function MatchPrompts({ route }) {
 	const [loaded3, setLoaded3] = useState(false);
 
 	async function fetchProfile1(profile_id1) {
-		url = 'http://127.0.0.1:5000/api/profile/' + profile_id1;
+		const url = 'http://127.0.0.1:5000/api/profile/' + profile_id1;
 		const response = await fetch(url);
 		const json = await response.json();
 		setProfile1(json);
@@ -88,7 +86,7 @@ export default function MatchPrompts({ route }) {
 	}
 
 	async function fetchProfile2(profile_id2) {
-		url = 'http://127.0.0.1:5000/api/profile/' + profile_id2;
+		const url = 'http://127.0.0.1:5000/api/profile/' + profile_id2;
 		const response = await fetch(url);
 		const json = await response.json();
 		setProfile2(json);
@@ -96,7 +94,7 @@ export default function MatchPrompts({ route }) {
 	}
 
 	async function fetchMatchmakerProfile(matchmaker_id) {
-		url = 'http://127.0.0.1:5000/api/profile/' + matchmaker_id;
+		const url = 'http://127.0.0.1:5000/api/profile/' + matchmaker_id;
 		const response = await fetch(url);
 		const json = await response.json();
 		setMatchmaker(json);

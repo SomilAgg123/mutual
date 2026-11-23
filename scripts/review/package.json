@@ -2,11 +2,17 @@
   "name": "mutual-review-captures",
   "private": true,
   "description": "Optional browser rendering tools for review screenshots, separate from the Python demo.",
-  "scripts": { "build": "node build.mjs" },
+  "scripts": {
+    "build": "node build.mjs",
+    "build:site": "node build-site.mjs"
+  },
   "dependencies": {
     "esbuild": "0.28.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native-web": "0.18.12"
+  },
+  "devDependencies": {
+    "playwright": "1.65.1"
   }
 }

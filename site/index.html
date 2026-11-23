@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#883fce">
+  <meta name="description" content="Explore Mutual, a 2023 matchmaking prototype where friends make the introduction. A guided tour of the original UI and its explainable matching engine.">
+  <meta property="og:title" content="Mutual — friends make the introduction">
+  <meta property="og:description" content="A guided tour of the original app: profile cards, compatibility, and a little help from your friends.">
+  <meta property="og:image" content="https://somilagg123.github.io/mutual/assets/cards-and-matching.png">
+  <meta property="og:type" content="website">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Mutual — friends make the introduction</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/scores.js" defer></script>
+  <script src="walkthrough.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#walkthrough">Skip to the walkthrough</a>
+  <header class="site-header shell">
+    <a class="wordmark" href="./" aria-label="Mutual home"><img src="assets/logo.png" alt="" width="36" height="36">mutual<span>the portfolio edition</span></a>
+    <nav aria-label="Main navigation"><a href="#walkthrough">The app</a><a href="#matching">The matching</a><a class="source-link" href="https://github.com/SomilAgg123/mutual">View source <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></svg></a></nav>
+  </header>
+  <main>
+    <section class="intro shell" aria-labelledby="page-title">
+      <div><p class="eyebrow">Built with friends, for friends · 2023</p><h1 id="page-title">Some connections<br>start with <em>a friend.</em></h1></div>
+      <div class="intro-aside"><p>Mutual put the matchmaker at the center: browse people you know, spot a connection, and help two friends break the ice.</p><a href="#walkthrough" class="text-link">Take a look inside</a><p class="edition">An original app, preserved and explained.</p></div>
+    </section>
+
+    <section id="walkthrough" class="tour-section" aria-label="Guided app walkthrough">
+      <div class="shell">
+        <div class="section-heading"><p class="eyebrow">The original experience</p><p>Explore a screen. Follow the idea.</p></div>
+        <nav id="tour-steps" class="steps" aria-label="Walkthrough screens">
+          <button type="button" data-step="browse" aria-current="step">Profile cards</button>
+          <button type="button" data-step="matches">Find a match</button>
+          <button type="button" data-step="compare">See the reasons</button>
+          <button type="button" data-step="icebreaker">Break the ice</button>
+          <button type="button" data-step="introductions">Introductions</button>
+          <button type="button" data-step="profile">Your profile</button>
+          <button type="button" data-step="responses">Photos & prompts</button>
+        </nav>
+        <div class="tour-layout">
+          <article class="tour-story" aria-live="polite" aria-atomic="true">
+            <p class="chapter" id="tour-progress">Screen 1 of 7 · Discover</p>
+            <h2 id="tour-title">A person.<br>Not just a photo.</h2>
+            <p class="tour-description" id="tour-description">The profile card gives a matchmaker a little more to go on: a face, a place, and answers that let someone's personality come through.</p>
+            <div class="design-note"><span class="note-mark" aria-hidden="true">✳</span><div><h3 id="note-title">The friend is the matchmaker</h3><p id="note-description">“Find me a mutual!” leads into recommendations. The person browsing is helping make an introduction.</p></div></div>
+            <p class="screen-context" id="screen-context">Jordan is a fictional profile. The card layout and prompt labels come from the original app.</p>
+            <a id="screen-source" class="text-link" href="https://github.com/SomilAgg123/mutual/blob/main/frontend/src/screens/Source/Source.js">Explore this screen's source</a>
+            <div class="tour-controls"><button type="button" id="previous" class="button secondary" disabled>Previous</button><button type="button" id="next" class="button primary">Next: Find a match</button></div>
+          </article>
+          <figure class="device-stage">
+            <div class="stage-halo" aria-hidden="true"></div>
+            <div class="device"><div class="device-viewport"><iframe id="app-screen" src="preview.html?screen=browse" title="Original Mutual profile card, read-only preview" tabindex="-1"></iframe></div></div>
+            <figcaption><span class="original-label">Original UI</span>Read-only preview · sample data</figcaption>
+            <a class="preview-fallback" href="assets/cards-and-matching.png">View the screenshot gallery</a>
+          </figure>
+        </div>
+        <p class="tour-footnote">Use the tour controls to move through the app. Phone controls are inactive; previews show each screen's initial view. No accounts, messages, or real introductions are created.</p>
+        <noscript><p class="noscript">Enable JavaScript for the guided tour and score explorer. You can still <a href="assets/cards-and-matching.png">view the original screen gallery</a> or <a href="https://github.com/SomilAgg123/mutual">read the project on GitHub</a>.</p></noscript>
+      </div>
+    </section>
+
+    <section id="matching" class="matching-section" aria-labelledby="matching-title">
+      <div class="shell matching-layout">
+        <div class="matching-intro"><p class="eyebrow">A closer look at the logic</p><h2 id="matching-title">Two ways<br>to click.</h2><p>Similarity looks for common ground. Complementarity looks at how preferences and traits might fit together.</p><p>The maintained Python demo makes these rules visible. Choose someone to compare with Alex.</p><div class="candidates" aria-label="Compare Alex with a candidate"><button type="button" data-candidate="0" aria-pressed="true">Jordan</button><button type="button" data-candidate="1" aria-pressed="false">Riley</button><button type="button" data-candidate="2" aria-pressed="false">Casey</button></div><a href="https://github.com/SomilAgg123/mutual/blob/main/docs/matching.md" class="text-link">Read the scoring rules</a></div>
+        <div class="score-panel" aria-live="polite" aria-atomic="true">
+          <p class="score-pair">Alex <span aria-hidden="true">&</span> <span id="candidate-name">Jordan</span></p>
+          <div class="score-values"><div><p>Similarity</p><strong id="similarity-value">89.5<span>%</span></strong><div id="similarity-meter" class="meter similarity" role="meter" aria-label="Similarity" aria-valuemin="0" aria-valuemax="100" aria-valuenow="89.47"><span></span></div></div><div><p>Complementarity</p><strong id="complementarity-value">100.0<span>%</span></strong><div id="complementarity-meter" class="meter complementarity" role="meter" aria-label="Complementarity" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span></span></div></div></div>
+          <div class="reason-block"><h3>What contributes to this result</h3><ul id="score-reasons"></ul></div>
+          <p class="score-meta" id="score-meta">Ranking score 94.7 · Complete sample profiles</p>
+          <p class="score-caveat">These are weighted rule scores, not predictions of relationship success. Historical personality-type and zodiac tables are retained as illustrative heuristics.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section shell" aria-labelledby="about-title">
+      <div><p class="eyebrow">A project with a past</p><h2 id="about-title">Preserved<br>with intention.</h2><p>Mutual was built collaboratively by <strong>Somil Aggarwal and Nalu Concepcion</strong>. This portfolio edition keeps the original product thinking, screen layouts, purple palette, and source code.</p><p>The restoration adds a small, runnable matching engine, documented scoring rules, tests, and this walkthrough.</p></div>
+      <div class="project-details"><div><span class="detail-label">Explore</span><h3>The original prototype</h3><p>React Native screens and a Flask backend, with the incomplete integrations documented. The mobile app and API remain historical source.</p><a class="text-link" href="https://github.com/SomilAgg123/mutual/blob/main/docs/status.md">What works and what is preserved</a></div><div><span class="detail-label">Run locally</span><h3>The matching example</h3><p>Python 3.10 or newer. No database, accounts, or package installation required.</p><code>python3 examples/match_demo.py</code><a class="text-link" href="https://github.com/SomilAgg123/mutual#try-the-matching-example">Get started on GitHub</a></div></div>
+    </section>
+  </main>
+  <footer class="site-footer shell"><a class="wordmark" href="./"><img src="assets/logo.png" alt="" width="30" height="30">mutual</a><p>Built in 2023. Restored in 2026.<br>A personal project by Somil Aggarwal, with original collaborator Nalu Concepcion.</p><div><a href="https://github.com/SomilAgg123/mutual">GitHub</a><a href="https://github.com/SomilAgg123/mutual/blob/main/NOTICE.md">Credits & provenance</a></div></footer>
+</body>
+</html>

@@ -8,6 +8,7 @@ The portfolio edition has a deliberately small supported runtime: the standalone
 | Similarity/complementarity scoring | Tested | Normalization, validation, missing data, reciprocal preferences, symmetric results |
 | Original screens and components | Preserved | 29 screen files plus reusable controls and state contexts |
 | Browser review previews | Captured | Eight original screens rendered with offline fixtures and adapters; not an integrated app |
+| Public app walkthrough | Static website | Seven original screens, tour navigation, and a score explorer; [GitHub Pages](https://somilagg123.github.io/mutual/) |
 | Sign-in and sign-up | Incomplete prototype | App bypasses authentication; token endpoint has an unconditional authorization stub |
 | Onboarding | Incomplete prototype | Screens exist; navigator/provider wiring needs repair |
 | Search and matchmaker activity | Partly fixture-driven | Replace hardcoded lists with consistent backend contracts |
@@ -26,6 +27,8 @@ Local validation on 23 November 2026 used Python 3.13.1. All 19 tests and the do
 Python syntax, JSON files, local JavaScript imports, and documentation links passed the repository checks. All 57 imported JavaScript/JSX files were also parsed locally using the original checkout's Babel parser; this is syntax verification, not a native build or an integration test. A private comparison against four distinct historical credential values found no copies in the curated files; the values themselves are not stored in this edition.
 
 The optional browser preview builds successfully. Four screenshots were captured and visually inspected, including profile cards, recommendations, comparison details, and profile management. The capture command checks for uncaught JavaScript errors and rejected promises. It does not test native services or interactive flows.
+
+The public walkthrough adds the original icebreaker-selection screen. Its browser tests cover seven rendered screens, navigation, deep links, history, keyboard controls, score comparisons, and responsive widths. The [site notes](../site/README.md) distinguish the working website controls from the read-only app previews.
 
 The GitHub Actions workflow runs on Python 3.10 and 3.13, following the documented usage of [checkout](https://github.com/actions/checkout) and [setup-python](https://github.com/actions/setup-python). Results for the current revision are available on [the review PR](https://github.com/SomilAgg123/mutual/pull/1).
 

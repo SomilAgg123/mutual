@@ -16,6 +16,7 @@ dist/
 *.egg-info/
 .expo/
 .review-build/
+.site-build/
 Pods/
 .gradle/
 .idea/

@@ -1,0 +1,28 @@
+@font-face {
+  font-family: Lato;
+  src: url(assets/Lato-Regular.ttf);
+}
+@font-face {
+  font-family: LatoBold;
+  src: url(assets/Lato-Bold.ttf);
+}
+@font-face {
+  font-family: LatoItalic;
+  src: url(assets/Lato-Italic.ttf);
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#preview {
+  margin: 0;
+  width: 374px;
+  height: 844px;
+  overflow: hidden;
+  background: #fff;
+}
+#preview {
+  display: flex;
+  pointer-events: none;
+}
